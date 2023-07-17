@@ -1,0 +1,122 @@
+/*Aqui será o css para estilização global*/
+/*Importando a 'Comfortaa' fonte do google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
+:root {
+    --bg-color: linear-gradient(to right, #694772, #6cb2c4);
+    --button-color: #6972aa;
+    --btn-options-color: #694772;
+    --button-hover-color: #ab78b9;
+    --purple-10: #a1a7ca;
+    --purple-20: #9e9595;
+    --purple-30: #705977;
+    --purple-40: #cda3da;
+    --purple-50: #b37fc2;
+    --purple-60: #6972aa;
+    --blue-10: #0077FF;
+    --green: #008000;
+    --green-10: #42e242;
+    --red: #ff0000;
+    --red-10: #bd4242;
+    --white: #FFF;
+    --black: #000;
+    --box-shadow: rgb(0, 0, 0, 0.5);
+}
+
+* {
+    font-family: 'Comfortaa';
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--black);
+    box-sizing: border-box;
+}
+
+h1 {
+    color: var(--white);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--purple-10);
+}
+
+/*******Estilo dos títulos das sections*******/
+.container-title,
+.container-title-manage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px 0 0;
+    padding: 10px;
+}
+
+.container-title-manage {
+    margin: 80px 0 0;
+}
+
+section {
+    border: 1px solid var(--purple-20);
+    border-radius: 8px;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+img {
+    width: 50px;
+}
+
+select,
+input[type="text"] {
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--purple-10);
+    font-size: 16px;
+}
+
+input[type="number"] {
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--purple-10);
+    font-size: 16px;
+}
+
+input[type="date"] {
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--purple-10);
+    font-size: 16px;
+}
+
+button[type="button"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    background-color: var(--button-color);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="button"]:hover {
+    background-color: var(--purple-10);
+}

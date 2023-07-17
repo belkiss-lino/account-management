@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./index.css" />
+  <title>Sistema de Gerenciamento de Contas</title>
+</head>
+
+<body>
+  <!--------------------------MENU------------------------------>
+  <nav class="menu">
+    <ul>
+      <li><img src="./assets/logo.png" alt="logo" /></li>
+      <li><a href="#manageAccounts">Gerenciar Contas</a></li>
+      <li><a href="#manageTransactions">Gerenciar Transações</a></li>
+      <li><a href="#generalPanel">Painel Geral</a></li>
+    </ul>
+  </nav>
+  <!-------------SEÇÃO DE GERENCIAMENTO DE CONTAS--------------->
+  <section class="manageAccounts" id="manageAccounts">
+    <div class="container-title-manage">
+      <h1>Gerenciar Contas</h1>
+    </div>
+    <!----------------------BOTÕES DE OPÇÕES---------------------->
+    <div class="buttons-manage-accounts">
+      <button class="btnOptions" id="btn-register">CADASTRAR</button>
+      <button class="btnOptions" id="btn-Remove">REMOVER</button>
+      <button class="btnOptions" id="btn-merge">MESCLAR</button>
+    </div>
+    <!---------------CONTAINER DOS CARDS DE OPÇÕES---------------->
+    <div class="container">
+      <div class="option-container register">
+        <!-------------CARD PARA CADASTRAR NOVA CONTA------------->
+        <div>
+          <form>
+            <h3>Cadastrar conta:</h3>
+            <label for="bank">Banco:</label>
+            <input type="text" id="bank" name="bank">
+
+            <label for="agency">Agência:</label>
+            <input type="number" id="agency" name="agency">
+
+            <label for="account_number">Número da conta:</label>
+            <input type="number" id="account_number" name="account_number">
+        </div>
+
+        <button type="button" id="register">Cadastrar</button>
+        </form>
+      </div>
+      <!------------------CARD PARA REMOVER CONTA---------------->
+      <div class="option-container remove">
+        <div>
+          <form>
+            <h3>Remover conta:</h3>
+            <label for="remove_account">Selecione uma conta:</label>
+            <select id="remove_account" name="remove_account">
+              <option value="">Sem contas cadastradas</option>
+            </select>
+        </div>
+        <button type="button" id="remove">Remover</button>
+        </form>
+      </div>
+      <!------------------CARD PARA MESCLAR CONTAS---------------->
+      <div class="option-container merge">
+        <div>
+          <form>
+            <h3>Mesclar contas:</h3>
+            <label for="account1">Conta 1:</label>
+            <select id="account1" name="account1">
+              <option value="">Selecione uma conta</option>
+            </select>
+
+            <label for="account2">Conta 2:</label>
+            <select id="account2" name="account2">
+              <option value="">Selecione uma conta</option>
+            </select>
+        </div>
+
+        <button type="button" id="merge">Mesclar</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+  <!-------------SEÇÃO DE GERENCIAMENTO DE TRANSAÇÕES----------------->
+  <section class="manageTransactions" id="manageTransactions">
+
+    <div class="container-title">
+      <h1>Gerenciar Transações</h1>
+    </div>
+
+    <!---------------MENU PARA SELECIONAR CONTA E TRANSAÇÃO------------->
+    <div class="container account ">
+      <div class="option-container ">
+        <div>
+          <label>
+            <h3>Selecione sua conta:</h3>
+          </label>
+          <select id="selectYourAccount" name="selectYourAccount">
+            <option value="">Selecione uma de suas contas:</option>
+          </select>
+          <label>
+            <h3>Selecione a transação:</h3>
+          </label>
+          <select id="select-transaction" name="selectTransaction">
+            <option value="optionExtract">Extrato</option>
+            <option value="optionLastTransaction">Editar última transação</option>
+            <option value="optionAddTransaction">Adicionar transação</option>
+            <option value="optionTransferFunds">Transferir fundos</option>
+          </select>
+          <button type="button" id="btnSearch">BUSCAR</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!------------------OPÇÃO: EXTRATO---------------->
+      <div id="extract" class="option-container extract-layout extract ">
+        <h2>Extrato</h2>
+        <div class="container-table">
+          <table id="table_transactions">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Tipo</th>
+                <th>Categoria</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Saldo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- O TBODY SERÁ PREENCHIDO NO JS -->
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="5"><strong>Saldo:</strong></td>
+                <td id="cell_balance">R$ 0,00</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      <!------------------OPÇÃO: EDITAR ÚLTIMA TRANSAÇÃO---------------->
+      <div id="lastTransaction" class="option-container lastTransaction">
+        <h2>Editar última transação</h2>
+
+        <div class="last-transaction">
+          <p><strong>Última transação:</strong></p>
+          <p id="last_transaction"></p>
+        </div>
+
+        <form>
+          <div>
+            <label for="input_date_edit">Data:</label>
+            <input id="input_date_edit" type="date"><br>
+
+            <label for="select_type_edit">Tipo:</label>
+            <select id="select_type_edit" name="select_type">
+              <option value="">Selecione o tipo:</option>
+              <option value="Receita">Receita</option>
+              <option value="Despesa">Despesa</option>
+            </select><br>
+
+            <label for="select_category_edit">Categoria:</label>
+            <select id="select_category_edit" name="select_category_edit">
+              <option value="">Selecione a categoria:</option>
+              <option value="Alimentação">Alimentação</option>
+              <option value="Compras">Compras</option>
+              <option value="Contas">Contas</option>
+              <option value="Saúde">Saúde</option>
+              <option value="Salário">Salário</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Transferência">Transferência</option>
+              <option value="Outros">Outros</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="input_description_edit">Descrição:</label>
+            <input id="input_description_edit" type="text"><br>
+
+            <label for="input_value_edit">Valor:</label>
+            <input id="input_value_edit" type="number" step="0.01"><br>
+          </div>
+
+        </form>
+        <button type="button" id="btn_edit_last_transaction">Editar última transação</button>
+      </div>
+    </div>
+    <div class="container">
+      <!------------------OPÇÃO: ADICIONAR NOVA TRANSAÇÃO---------------->
+      <div id="addTransaction" class="option-container  addTransaction">
+        <h2>Adicionar transação</h2>
+
+        <form>
+          <div>
+            <label for="transaction_date">Data:</label>
+            <input id="transaction_date" type="date"><br>
+
+            <label for="transaction_type">Tipo:</label>
+            <select id="transaction_type" name="select_type">
+              <option value="">Selecione o tipo:</option>
+              <option value="Receita">Receita</option>
+              <option value="Despesa">Despesa</option>
+            </select><br>
+
+            <label for="transaction_category">Categoria:</label>
+            <select id="transaction_category" name="transaction_category">
+              <option value="">Selecione a categoria:</option>
+              <option value="Alimentação">Alimentação</option>
+              <option value="Compras">Compras</option>
+              <option value="Contas">Contas</option>
+              <option value="Saúde">Saúde</option>
+              <option value="Salário">Salário</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Transferência">Transferência</option>
+              <option value="Outros">Outros</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="transaction_description">Descrição:</label>
+            <input id="transaction_description" type="text"><br>
+
+            <label for="transaction_value">Valor:</label>
+            <input id="transaction_value" type="number" step="0.01"><br>
+          </div>
+
+          <button type="button" id="btn_add_transaction">Adicionar transação</button>
+        </form>
+      </div>
+      <!------------------OPÇÃO: TRANSFERIR FUNDOS---------------->
+      <div id="transferFunds" class="option-container  transferFunds">
+        <h2>Transferir fundos</h2>
+        <form>
+          <label for="select_transfer_from">De:</label>
+          <select id="select_transfer_from" name="select_transfer_from">
+            <option value="">Selecione a conta:</option>
+          </select>
+
+          <label for="select_transfer_to">Para:</label>
+          <select id="select_transfer_to" name="select_transfer_to">
+            <option value="">Selecione a conta:</option>
+          </select>
+
+          <label for="input_transfer_value">Valor:</label>
+          <input id="input_transfer_value" type="number" step="0.01"><br>
+          <button type="button" id="btn_transfer_funds">Transferir fundos</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!--------------------SEÇÃO PAINEL GERAL----------------------->
+  <section class="generalPanel" id="generalPanel">
+    <div class="container-title">
+      <h1>Painel Geral</h1>
+    </div>
+
+    <div class="container container-row">
+      <!------------------RESUMO DAS CONTAS---------------->
+      <div class="option-container ">
+        <h2>Resumo das contas</h2>
+        <table class="table-accounts-summary">
+          <thead>
+            <tr>
+              <th>Conta</th>
+              <th>Saldo atual</th>
+            </tr>
+          </thead>
+          <tbody id="accounts_summary">
+            <!-- TBODY SERÁ PREENCHIDO NO JS -->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total:</td>
+              <td id="total_balance">R$ 0,00</td>
+            </tr>
+          </tfoot>
+        </table>
+        <!------------------SALDO DOS ÚLTIMOS 6 MESES---------------->
+        <div>
+          <h2>Saldo dos últimos 6 meses</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Conta</th>
+                <th>Saldo</th>
+              </tr>
+            </thead>
+            <tbody id="accounts_balance_6">
+              <!-- TBODY PREENCHIDO NO JS -->
+            </tbody>
+            <tfoot>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <!------------------RESUMO DE RECEITAS E DESPESAS DO MÊS---------------->
+      <div class="option-container ">
+        <h2>Resumo de receitas e despesas do mês</h2>
+
+        <div class="container-current-month">
+          <h2>Mês atual:</h2>
+          <h2 id="currentMonthText" class="currentMonthText"></h2>
+        </div>
+
+        <table class="table-month-summary">
+          <thead>
+            <tr>
+              <th>Total de receitas</th>
+              <th>Total de despesas</th>
+              <th>Saldo do mês</th>
+            </tr>
+          </thead>
+          <tbody id="month_summary">
+            <!--TBODY PREENCHIDO NO JS-->
+          </tbody>
+        </table>
+        <!------------------AQUI ACRESCENTEI UMA FUNÇÃO PARA O USUÁRIO VER AS DESPESAS
+          E RECEITAS TAMBÉM DE OUTROS MESES ALÉM DO ATUAL--------------------------->
+        <div class="container-btnMonth">
+          <span id="currentMonth"></span>
+          <select id="select_month" name="select_month">
+            <option value="january">Janeiro</option>
+            <option value="february">Fevereiro</option>
+            <option value="march">Março</option>
+            <option value="april">Abril</option>
+            <option value="may">Maio</option>
+            <option value="june">Junho</option>
+            <option value="july">Julho</option>
+            <option value="august">Agosto</option>
+            <option value="september">Setembro</option>
+            <option value="october">Outubro</option>
+            <option value="november">Novembro</option>
+            <option value="dezember">Dezembro</option>
+          </select>
+          <button id="btnMonth" class="btnMonth">Buscar outro mês</button>
+        </div>
+      </div>
+    </div>
+    <!---------GRÁFICO DE DESPESAS POR CATEGORIA (funcionalidade extra)----------->
+    <div class="container">
+      <div class="option-container container-chart">
+        <div>
+          <h2>Gráfico de Despesas por Categoria</h2>
+          <div id="category-chart"></div>
+        </div>
+  </section>
+
+  <script src="./index.js"></script>
+</body>
+
+</html>
